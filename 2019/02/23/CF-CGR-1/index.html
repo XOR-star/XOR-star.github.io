@@ -7,18 +7,18 @@
 
 
 
-    <meta name="description" content="A. Parity 题意：给定一个多项式，判断值的奇偶     第 $i$ 项为   解法一：直接模拟，保持对2取模解法二：判断base和最后一项的奇偶性">
+    <meta name="description" content="A. Parity 题意：给定一个多项式，判断值的奇偶，第 $i$ 项为 $a_i \cdot b^{k-i} $。  解法一：直接模拟，保持对 $2$ 取模。解法二：判断 $base$ 和最后一项的奇偶性。">
 <meta name="keywords" content="CF Rounds,数据结构,动态规划,数学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CodeForces CGR#1 A B C D E F">
 <meta property="og:url" content="http://yoursite.com/2019/02/23/CF-CGR-1/index.html">
 <meta property="og:site_name" content="XOR-star">
-<meta property="og:description" content="A. Parity 题意：给定一个多项式，判断值的奇偶     第 $i$ 项为   解法一：直接模拟，保持对2取模解法二：判断base和最后一项的奇偶性">
+<meta property="og:description" content="A. Parity 题意：给定一个多项式，判断值的奇偶，第 $i$ 项为 $a_i \cdot b^{k-i} $。  解法一：直接模拟，保持对 $2$ 取模。解法二：判断 $base$ 和最后一项的奇偶性。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-22T17:24:01.096Z">
+<meta property="og:updated_time" content="2019-02-22T18:49:28.419Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CodeForces CGR#1 A B C D E F">
-<meta name="twitter:description" content="A. Parity 题意：给定一个多项式，判断值的奇偶     第 $i$ 项为   解法一：直接模拟，保持对2取模解法二：判断base和最后一项的奇偶性">
+<meta name="twitter:description" content="A. Parity 题意：给定一个多项式，判断值的奇偶，第 $i$ 项为 $a_i \cdot b^{k-i} $。  解法一：直接模拟，保持对 $2$ 取模。解法二：判断 $base$ 和最后一项的奇偶性。">
 
 
 
@@ -84,7 +84,7 @@
 
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="is-3-column">
+<body class="is-2-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -130,7 +130,7 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main"><div class="card">
     
     <div class="card-image">
         <span class="image is-7by1">
@@ -152,7 +152,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    几秒 读完 (大约 105 个字)
+                    3 分钟 读完 (大约 479 个字)
                 </span>
                 
                 
@@ -166,15 +166,24 @@
         </h1>
         <div class="content">
             <h1 id="A-Parity"><a href="#A-Parity" class="headerlink" title="A. Parity"></a><a href="https://codeforces.com/contest/1110/problem/A" target="_blank" rel="noopener">A. Parity</a></h1><blockquote>
-<p>题意：给定一个多项式，判断值的奇偶<br>     第 $i$ 项为 </p>
+<p>题意：给定一个多项式，判断值的奇偶，第 $i$ 项为 $a_i \cdot b^{k-i} $。</p>
 </blockquote>
-<p>解法一：直接模拟，保持对2取模<br>解法二：判断base和最后一项的奇偶性</p>
+<p>解法一：直接模拟，保持对 $2$ 取模。<br>解法二：判断 $base$ 和最后一项的奇偶性。</p>
 <a id="more"></a>
-<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> base, k, val, x;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">    <span class="hljs-built_in">cin</span> &gt;&gt; base &gt;&gt; k;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k; ++i)&#123;</span><br><span class="line">        <span class="hljs-built_in">cin</span> &gt;&gt; x;</span><br><span class="line">        val = val * base + x;</span><br><span class="line">        val %= <span class="hljs-number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">cout</span> &lt;&lt; (val &amp; <span class="hljs-number">1</span> ? <span class="hljs-string">"odd"</span> : <span class="hljs-string">"even"</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> base, k, val, x;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">    <span class="hljs-built_in">cin</span> &gt;&gt; base &gt;&gt; k;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= k; ++i)&#123;</span><br><span class="line">        <span class="hljs-built_in">cin</span> &gt;&gt; x;</span><br><span class="line">        val = val * base + x;</span><br><span class="line">        val %= <span class="hljs-number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">cout</span> &lt;&lt; (val &amp; <span class="hljs-number">1</span> ? <span class="hljs-string">"odd"</span> : <span class="hljs-string">"even"</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
 <h1 id="B-Tape"><a href="#B-Tape" class="headerlink" title="B. Tape"></a><a href="https://codeforces.com/contest/1110/problem/B" target="_blank" rel="noopener">B. Tape</a></h1><blockquote>
-<p>题意：</p>
+<p>题意：一根木棍，分成大小为 $1$ 的 $m$ 段区间，上有 $n$ 个裂缝，要求使用不超过 $k$ 条胶布覆盖所有裂缝。问最短使用多少胶布。</p>
 </blockquote>
-
+<p>可以认为有 $n$ 个节点的图，用 $n-k$ 条边连接成 $k$ 个联通块，贪心取前 $n-k$ 个最短的区间，加上必须覆盖的 $n$ 个区间。</p>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> <span class="hljs-title">N</span><span class="hljs-params">(<span class="hljs-number">1e5</span> + <span class="hljs-number">10</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n, m, k;</span><br><span class="line"><span class="hljs-keyword">int</span> b[N];</span><br><span class="line">priority_queue&lt;<span class="hljs-keyword">int</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;, greater&lt;<span class="hljs-keyword">int</span>&gt;&gt; pq;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">    <span class="hljs-built_in">cin</span> &gt;&gt; n &gt;&gt; m &gt;&gt; k;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) <span class="hljs-built_in">cin</span> &gt;&gt; b[i];</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; ++i) pq.push(b[i] - b[i<span class="hljs-number">-1</span>] - <span class="hljs-number">1</span>);</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">ans</span><span class="hljs-params">(n)</span></span>;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n - k; ++i) &#123;</span><br><span class="line">        ans += pq.top();</span><br><span class="line">        pq.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="C-Meaningless-Operations"><a href="#C-Meaningless-Operations" class="headerlink" title="C. Meaningless Operations"></a><a href="https://codeforces.com/contest/1110/problem/C" target="_blank" rel="noopener">C. Meaningless Operations</a></h1><blockquote>
+<p>题意：给定 $a$ 求 $f(a) = \max_{0 &lt; b &lt; a}{gcd(a \oplus b, a  \&amp;  b)}$</p>
+</blockquote>
+<p>对 $a$ 的二进制表示中每一位取反，使 $a \oplus b = 2 ^ n - 1$，$a \&amp; b = 0$，使两数异或值最大，按位与值等于 $0$，使结果最大化<br>特例：当 $a$ 为 $2$ 的幂次减 $1$ 时，$b$ 不可取 $0$，贪心取小于 $a$ 的最大因子</p>
+<p>p.s. 内建函数 __builtin_popcountll() 用于统计二进制表示中 $1$ 的个数</p>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> CaseT int T;cin &gt;&gt; T;for(int cas=0; cas &lt; T; ++cas)</span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> a;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">bitn</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>&#123;<span class="hljs-comment">//判断二进制最高位</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">res</span><span class="hljs-params">(<span class="hljs-number">0</span>)</span></span>;</span><br><span class="line">    <span class="hljs-keyword">while</span>(x) res++, x &gt;&gt;= <span class="hljs-number">1</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">    CaseT&#123;</span><br><span class="line">        <span class="hljs-built_in">cin</span> &gt;&gt; a;</span><br><span class="line">        <span class="hljs-keyword">if</span>(__builtin_popcountll(a) != bitn(a)) &#123;</span><br><span class="line">            <span class="hljs-built_in">cout</span> &lt;&lt; (<span class="hljs-number">1</span> &lt;&lt; bitn(a)) - <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> ans(<span class="hljs-number">1</span>);</span><br><span class="line">            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i * i &lt;= a; ++i)</span><br><span class="line">                <span class="hljs-keyword">if</span>(a % i == <span class="hljs-number">0</span>) &#123;</span><br><span class="line">                    ans = a / i;</span><br><span class="line">                    <span class="hljs-keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="hljs-built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -198,11 +207,12 @@
 
 </div>
                 
+                
 
 
 
 
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+<div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-3 column-right is-sticky">
     
         
 <div class="card widget">
@@ -290,6 +300,10 @@
         <a class="is-flex" href="#B-Tape">
         <span class="has-mr-6">2</span>
         <span>B. Tape</span>
+        </a></li><li>
+        <a class="is-flex" href="#C-Meaningless-Operations">
+        <span class="has-mr-6">3</span>
+        <span>C. Meaningless Operations</span>
         </a></li></ul>
         </div>
     </div>
@@ -325,124 +339,6 @@
         </div>
     </div>
 </div>
-    
-    
-        <div class="column-right-shadow is-hidden-widescreen is-sticky">
-        
-            
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            最新文章
-        </h3>
-        
-        <article class="media">
-            
-            <a href="/2019/02/23/CF-CGR-1/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/EF house.jpg" alt="CodeForces CGR#1 A B C D E F">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-22T16:05:12.000Z">2019-02-23</time></div>
-                    <a href="/2019/02/23/CF-CGR-1/" class="has-link-black-ter is-size-6">CodeForces CGR#1 A B C D E F</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a> / <a class="has-link-grey -link" href="/categories/ACM/比赛题解/">比赛题解</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-</div>
-
-        
-            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/02/">
-                <span class="level-start">
-                    <span class="level-item">二月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-        
-            
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            标签云
-        </h3>
-        <a href="/tags/CF-Rounds/" style="font-size: 10px;">CF Rounds</a> <a href="/tags/动态规划/" style="font-size: 10px;">动态规划</a> <a href="/tags/数学/" style="font-size: 10px;">数学</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a>
-    </div>
-</div>
-
-        
-            
-
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            链接
-        </h3>
-        <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="http://47.104.95.59/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">nbutacm</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">47.104.95.59</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://llfzllfz.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">llfz</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">llfzllfz.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
-
-        
-        </div>
-    
-</div>
-
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
     
         
 <div class="card widget">
