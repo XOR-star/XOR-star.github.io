@@ -2,21 +2,23 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: 差分 - XOR-star</title>
+<title>CodeForces #539 partial solutions - XOR-star</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="This site is used for my own CS tech blog.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="XOR-star">
-<meta property="og:url" content="http://yoursite.com/tags/差分/index.html">
+    <meta name="description" content="2A. Sasha and His Trip 题意：$n$ 个城市排成一行，两两之间距离为 $1$ 公里，从 $1$ 到 $n$ 编号。Sasha 要从 $1$ 号城市开车到 $n$ 号城市，每 $1$ 公里消耗 $1$ 升的油。车的油箱共 $v$ 升，第 $i$ 个城市的油价为 $i$ 元每升。问最少花多少邮费能够到达城市 $n$。  贪心，在城市 $1​$ 尽量加满，之后每到 $1​$ 个城市">
+<meta name="keywords" content="贪心,前缀和,位运算,暴力,字符串">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CodeForces #539 partial solutions">
+<meta property="og:url" content="http://yoursite.com/2019/02/27/CF-539/index.html">
 <meta property="og:site_name" content="XOR-star">
-<meta property="og:description" content="This site is used for my own CS tech blog.">
+<meta property="og:description" content="2A. Sasha and His Trip 题意：$n$ 个城市排成一行，两两之间距离为 $1$ 公里，从 $1$ 到 $n$ 编号。Sasha 要从 $1$ 号城市开车到 $n$ 号城市，每 $1$ 公里消耗 $1$ 升的油。车的油箱共 $v$ 升，第 $i$ 个城市的油价为 $i$ 元每升。问最少花多少邮费能够到达城市 $n$。  贪心，在城市 $1​$ 尽量加满，之后每到 $1​$ 个城市">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-28T08:43:31.332Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XOR-star">
-<meta name="twitter:description" content="This site is used for my own CS tech blog.">
+<meta name="twitter:title" content="CodeForces #539 partial solutions">
+<meta name="twitter:description" content="2A. Sasha and His Trip 题意：$n$ 个城市排成一行，两两之间距离为 $1$ 公里，从 $1$ 到 $n$ 编号。Sasha 要从 $1$ 号城市开车到 $n$ 号城市，每 $1$ 公里消耗 $1$ 升的油。车的油箱共 $v$ 升，第 $i$ 个城市的油价为 $i$ 元每升。问最少花多少邮费能够到达城市 $n$。  贪心，在城市 $1​$ 尽量加满，之后每到 $1​$ 个城市">
 
 
 
@@ -88,7 +90,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/f.png" alt="XOR-star" height="28">
+                <img src="/images/f.png" alt="CodeForces #539 partial solutions" height="28">
             
             </a>
         </div>
@@ -111,6 +113,10 @@
             <div class="navbar-end">
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -125,29 +131,18 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">差分</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/2019/02/23/CF-CGR-1/" class="image is-7by1">
-            <img class="thumbnail" src="/images/EF house.jpg" alt="Codeforces Global Round #1 partial solutions">
-        </a>
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/images/HK holloween.jpg" alt="CodeForces #539 partial solutions">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-22T16:05:12.000Z">2019-02-23</time>
+                <time class="level-item has-text-grey" datetime="2019-02-27T13:22:41.000Z">2019-02-27</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/ACM/">ACM</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ACM/比赛题解/">比赛题解</a>
@@ -157,7 +152,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    12 分钟 读完 (大约 1733 个字)
+                    7 分钟 读完 (大约 1090 个字)
                 </span>
                 
                 
@@ -166,24 +161,53 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/02/23/CF-CGR-1/">Codeforces Global Round #1 partial solutions</a>
+                CodeForces #539 partial solutions
             
         </h1>
         <div class="content">
-            <h1 id="A-Parity"><a href="#A-Parity" class="headerlink" title="A. Parity"></a><a href="https://codeforces.com/contest/1110/problem/A" target="_blank" rel="noopener">A. Parity</a></h1><blockquote>
-<p>题意：给定一个多项式，判断值的奇偶，第 $i$ 项为 $a_i \cdot b^{k-i} $。</p>
+            <h1 id="2A-Sasha-and-His-Trip"><a href="#2A-Sasha-and-His-Trip" class="headerlink" title="2A. Sasha and His Trip"></a><a href="https://codeforces.com/contest/1113/problem/A" target="_blank" rel="noopener">2A. Sasha and His Trip</a></h1><blockquote>
+<p>题意：$n$ 个城市排成一行，两两之间距离为 $1$ 公里，从 $1$ 到 $n$ 编号。Sasha 要从 $1$ 号城市开车到 $n$ 号城市，每 $1$ 公里消耗 $1$ 升的油。车的油箱共 $v$ 升，第 $i$ 个城市的油价为 $i$ 元每升。问最少花多少邮费能够到达城市 $n$。</p>
 </blockquote>
-<p>解法一：直接模拟，保持对 $2$ 取模。<br>解法二：判断 $base$ 和最后一项的奇偶性。</p>
+<p>贪心，在城市 $1​$ 尽量加满，之后每到 $1​$ 个城市加一次油，直到可以到达 $n​$ 为止。计算等差数列。注意 $n-1 \le v​$ 的情况。</p>
+<a id="more"></a>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> n, v, ans;</span><br><span class="line">    <span class="hljs-built_in">cin</span> &gt;&gt; n &gt;&gt; v;</span><br><span class="line">    <span class="hljs-keyword">if</span> (n - <span class="hljs-number">1</span> &lt;= v) &#123;</span><br><span class="line">        ans = n - <span class="hljs-number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        ans = v;</span><br><span class="line">        n -= v + <span class="hljs-number">1</span>;</span><br><span class="line">        ans += (<span class="hljs-number">2</span> + (<span class="hljs-number">2</span> + n - <span class="hljs-number">1</span>)) * n / <span class="hljs-number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="2B-Sasha-and-Magnetic-Machines"><a href="#2B-Sasha-and-Magnetic-Machines" class="headerlink" title="2B. Sasha and Magnetic Machines"></a><a href="https://codeforces.com/contest/1113/problem/B" target="_blank" rel="noopener">2B. Sasha and Magnetic Machines</a></h1><blockquote>
+<p>题意：给定一个长为 $n$ 的数组 $a$，选择 $1$ 个元素 $a_i$，将其除以它的一个因子 $x$，并将另一个元素 $a_j$ 乘以 $x$。求如此操作可能得到的最小的数组的权值和。</p>
+</blockquote>
+<p>要使权值和最小，要贪心将 $x$ 乘到最小的元素上，由于 $a_i \le 100$，暴力枚举其它元素的因子，模拟，计算最小值。</p>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> <span class="hljs-title">N</span><span class="hljs-params">(<span class="hljs-number">5e4</span> + <span class="hljs-number">10</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n, sum, d;</span><br><span class="line"><span class="hljs-keyword">int</span> a[N];</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) <span class="hljs-built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) sum += a[i];</span><br><span class="line">    sort(a, a+n);</span><br><span class="line">    d = <span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= a[i]; ++j) &#123;</span><br><span class="line">            <span class="hljs-keyword">if</span> (a[i] % j == <span class="hljs-number">0</span>) &#123;</span><br><span class="line">                d = min(d, a[<span class="hljs-number">0</span>] * (j - <span class="hljs-number">1</span>) - a[i] / j * (j - <span class="hljs-number">1</span>));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">cout</span> &lt;&lt; sum + d &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="1A-Sasha-and-a-Bit-of-Relax"><a href="#1A-Sasha-and-a-Bit-of-Relax" class="headerlink" title="1A. Sasha and a Bit of Relax"></a><a href="https://codeforces.com/contest/1109/problem/A" target="_blank" rel="noopener">1A. Sasha and a Bit of Relax</a></h1><blockquote>
+<p>题意：给定一个长为 $n$ 的数组，计算符合条件的区间 $[l,r]$ 个数。要求如下：</p>
+<ol>
+<li>$r-l+1$ 是偶数</li>
+<li>令 $mid=\frac{l+r-1}{2}$，满足 $a_l \oplus a_{l+1} \oplus \ldots \oplus a_{mid} = a_{mid + 1} \oplus a_{mid + 2} \oplus \ldots \oplus a_r $。</li>
+</ol>
+</blockquote>
+<p>考率异或的性质 $x \oplus x = 0$，区间的两边的异或和相等，可以得出整个区间的异或和等于 $0$。甚至可以获得结论：如果区间 $[l,r]$ 的异或和等于 $0$，那么取区间中任意一个下标 $t$，满足 $$a_l \oplus a_{l+1} \oplus \ldots \oplus a_{t} = a_{t+ 1} \oplus a_{t+ 2} \oplus \ldots \oplus a_r $$ 本题的解法，利用前缀异或和的性质，计算到第 $i$ 个元素的时候，前缀异或和等于 $s$，记录前 $i-1$ 个中与 $i$ 同奇偶的下标的前缀异或和为 $s$ 的个数。</p>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> <span class="hljs-title">N</span><span class="hljs-params">(<span class="hljs-number">3e5</span> + <span class="hljs-number">10</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n, a[N];</span><br><span class="line"><span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; odd, even;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) <span class="hljs-built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">    long long ans(0), esum(0);</span><br><span class="line">    odd[esum]++;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        esum ^= a[i];</span><br><span class="line">        ans += i &amp; <span class="hljs-number">1</span> ? odd[esum] : even[esum];</span><br><span class="line">        i &amp; <span class="hljs-number">1</span> ? odd[esum]++ : even[esum]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="1B-Sasha-and-One-More-Name"><a href="#1B-Sasha-and-One-More-Name" class="headerlink" title="1B. Sasha and One More Name"></a><a href="https://codeforces.com/contest/1109/problem/B" target="_blank" rel="noopener">1B. Sasha and One More Name</a></h1><blockquote>
+<p>题意：给定一个回文串，可以切割 $k$ 次将其变为 $k+1$ 段，问能否将这 $k+1$ 段的顺序重组，将其变成一个与原串不同的回文串。如果可以，输出最小的 $k$。</p>
+</blockquote>
+<p>先考虑不行的情况，一种是所有字符相同；第二种情况，如果字符串长度为奇数，除了回文中心外所有字符都相同，那么唯一不同的那个字符只能做回文中心，以上两种情况无论如何重组，都与原串相同。</p>
+<p>如果可以重组，那么至多只要切割 $2$ 次，策略是切割出最短的不同的前缀和后缀，然后交换前后缀的位置，可以保证与原串不同，且依然是回文串。</p>
+<p>$1$ 次的情况，暴力模拟即可，不断的对字符串进行 $rotate$ (旋转) 操作，相当于将一段前缀放到后面，然后判断回文。时间复杂度 $O(n^2)$。</p>
+<p>P.S. $rotate$ 可以使用 STL 里的 $rotate$ 函数。</p>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">checkPal</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; s)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j = s.size() - <span class="hljs-number">1</span>; i &lt; j; ++i, --j)</span><br><span class="line">        <span class="hljs-keyword">if</span> (s[i] != s[j]) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">checkAllSame</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; s)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; (<span class="hljs-keyword">int</span>)s.size() - <span class="hljs-number">1</span>; ++i)</span><br><span class="line">        <span class="hljs-keyword">if</span> (s[i] != s[i+<span class="hljs-number">1</span>]) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">rotate</span><span class="hljs-params">(<span class="hljs-built_in">string</span>&amp; s)</span> </span>&#123;</span><br><span class="line">    s = s.substr(<span class="hljs-number">1</span>) + s[<span class="hljs-number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">string</span> s;</span><br><span class="line">    <span class="hljs-built_in">cin</span> &gt;&gt; s;</span><br><span class="line">    <span class="hljs-built_in">string</span> t = s;</span><br><span class="line">    <span class="hljs-keyword">if</span>(t.size() &amp; <span class="hljs-number">1</span>) t.erase(t.size() / <span class="hljs-number">2</span>, <span class="hljs-number">1</span>);</span><br><span class="line">    <span class="hljs-keyword">if</span>(checkAllSame(t)) &#123;</span><br><span class="line">        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Impossible"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    t = s;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; s.size(); ++i) &#123;</span><br><span class="line">        rotate(t);</span><br><span class="line">        <span class="hljs-keyword">if</span> (checkPal(t) &amp;&amp; t != s) &#123;</span><br><span class="line">            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-number">2</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/02/23/CF-CGR-1/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/位运算/">位运算</a>, <a class="has-link-grey -link" href="/tags/前缀和/">前缀和</a>, <a class="has-link-grey -link" href="/tags/字符串/">字符串</a>, <a class="has-link-grey -link" href="/tags/暴力/">暴力</a>, <a class="has-link-grey -link" href="/tags/贪心/">贪心</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -193,7 +217,19 @@
 
 
 
-
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/02/26/CF-538/">
+                <span class="level-item">CodeForces #538</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -276,6 +312,33 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#2A-Sasha-and-His-Trip">
+        <span class="has-mr-6">1</span>
+        <span>2A. Sasha and His Trip</span>
+        </a></li><li>
+        <a class="is-flex" href="#2B-Sasha-and-Magnetic-Machines">
+        <span class="has-mr-6">2</span>
+        <span>2B. Sasha and Magnetic Machines</span>
+        </a></li><li>
+        <a class="is-flex" href="#1A-Sasha-and-a-Bit-of-Relax">
+        <span class="has-mr-6">3</span>
+        <span>1A. Sasha and a Bit of Relax</span>
+        </a></li><li>
+        <a class="is-flex" href="#1B-Sasha-and-One-More-Name">
+        <span class="has-mr-6">4</span>
+        <span>1B. Sasha and One More Name</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 <div class="card widget">
@@ -578,7 +641,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/f.png" alt="XOR-star" height="28">
+                    <img src="/images/f.png" alt="CodeForces #539 partial solutions" height="28">
                 
                 </a>
                 <p class="is-size-7">
