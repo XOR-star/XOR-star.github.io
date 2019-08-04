@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="XOR-star">
 <meta property="og:description" content="打了将近两年，CF终于上黄名了！！！嘿嘿！！！好久没更博客了，喵喵喵o( =•ω•= )m A. Important Exam 题意：$n$ 个同学参加测试，每张试卷有 $m$ 道题，每道题有 $5$ 个选项(A,B,C,D,E)，给出每个人的答题情况和每题的分值，计算可能的最大的总分数和。  贪心，每题都取被选次数最多的选项即可。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-04T22:49:05.349Z">
+<meta property="og:updated_time" content="2019-08-04T22:57:10.843Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CodeForces #577 partial solutions">
 <meta name="twitter:description" content="打了将近两年，CF终于上黄名了！！！嘿嘿！！！好久没更博客了，喵喵喵o( =•ω•= )m A. Important Exam 题意：$n$ 个同学参加测试，每张试卷有 $m$ 道题，每道题有 $5$ 个选项(A,B,C,D,E)，给出每个人的答题情况和每题的分值，计算可能的最大的总分数和。  贪心，每题都取被选次数最多的选项即可。">
@@ -152,7 +152,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1235 个字)
+                    8 分钟 读完 (大约 1242 个字)
                 </span>
                 
                 
@@ -187,7 +187,7 @@
 <h1 id="C-Maximum-Median"><a href="#C-Maximum-Median" class="headerlink" title="C. Maximum Median"></a><a href="http://codeforces.com/contest/1201/problem/C" target="_blank" rel="noopener">C. Maximum Median</a></h1><blockquote>
 <p>题意：给定一个数组，每次操作能选择一个数加 $1$，问 $k$ 次操作后能得到的最大的中位数是多少。</p>
 </blockquote>
-<p>先将数组排序，这样每次只需对数组后半段操作即可。<br>假设中位数为 $x$，那么需要将后半段中小于 $x$ 的数都加到 $x$，随着 $x$ 越大，需要的操作次数也一定越多，满足单调性，二分判定答案，复杂度 $O(nlogn)$。</p>
+<p>先将数组排序，这样每次只需对数组后半段操作即可。<br>假设中位数为 $x​$，那么需要将后半段中小于 $x​$ 的数都加到 $x​$，随着 $x​$ 越大，需要的操作次数也一定越多，满足单调性，二分判定答案，复杂度 $O(n * log(1e9))​$。</p>
 <figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">n, k = map(int, input().split())</span><br><span class="line">a = sorted(list(map(int, input().split())))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ok</span><span class="hljs-params">(x)</span>:</span></span><br><span class="line">    ned = <span class="hljs-number">0</span></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n // <span class="hljs-number">2</span>, n):</span><br><span class="line">        <span class="hljs-keyword">if</span> a[i] &lt; x:</span><br><span class="line">            ned += x - a[i]</span><br><span class="line">    <span class="hljs-keyword">return</span> ned &lt;= k</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">low = a[n // <span class="hljs-number">2</span>]</span><br><span class="line">high = <span class="hljs-number">2</span> * (<span class="hljs-number">10</span> ** <span class="hljs-number">9</span>) + <span class="hljs-number">5</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">while</span> low + <span class="hljs-number">1</span> &lt; high:</span><br><span class="line">    mid = (low + high) // <span class="hljs-number">2</span></span><br><span class="line">    <span class="hljs-keyword">if</span> ok(mid):</span><br><span class="line">        low = mid</span><br><span class="line">    <span class="hljs-keyword">else</span>:</span><br><span class="line">        high = mid</span><br><span class="line"></span><br><span class="line">print(low)</span><br></pre></td></tr></table></figure>
 <hr>
 <h1 id="D-Treasure-Hunting"><a href="#D-Treasure-Hunting" class="headerlink" title="D. Treasure Hunting"></a><a href="http://codeforces.com/contest/1201/problem/D" target="_blank" rel="noopener">D. Treasure Hunting</a></h1><blockquote>
