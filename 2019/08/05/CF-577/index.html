@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="XOR-star">
 <meta property="og:description" content="打了将近两年，CF终于上黄名了！！！嘿嘿！！！好久没更博客了，喵喵喵o( =•ω•= )m A. Important Exam 题意：$n$ 个同学参加测试，每张试卷有 $m$ 道题，每道题有 $5$ 个选项(A,B,C,D,E)，给出每个人的答题情况和每题的分值，计算可能的最大的总分数和。  贪心，每题都取被选次数最多的选项即可。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-04T22:59:03.575Z">
+<meta property="og:updated_time" content="2019-11-13T20:08:03.222Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CodeForces #577 partial solutions">
 <meta name="twitter:description" content="打了将近两年，CF终于上黄名了！！！嘿嘿！！！好久没更博客了，喵喵喵o( =•ω•= )m A. Important Exam 题意：$n$ 个同学参加测试，每张试卷有 $m$ 道题，每道题有 $5$ 个选项(A,B,C,D,E)，给出每个人的答题情况和每题的分值，计算可能的最大的总分数和。  贪心，每题都取被选次数最多的选项即可。">
@@ -145,14 +145,14 @@
                 <time class="level-item has-text-grey" datetime="2019-08-04T20:10:10.000Z">2019-08-05</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/ACM/">ACM</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ACM/比赛题解/">比赛题解</a>
+                <a class="has-link-grey -link" href="/categories/算法/">算法</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1268 个字)
+                    8 分钟 读完 (大约 1270 个字)
                 </span>
                 
                 
@@ -195,7 +195,7 @@
 </blockquote>
 <p>最终答案 = 垂直方向路程 + 水平方向路程</p>
 <p>垂直方向：<br>    由于垂直方向只能往上走，所以垂直方向只需走 $max_y - 1​$ 的距离。</p>
-<p>水平方向：<br>    先考虑某一行，如果要遍历所有的点，最优办法一定是从一个端点走到另一个端点。再考虑多行的情况，由于只能从下往上走，可以从下往上递推。每次行与行之间转移时，从一个端点走到上一层的一个端点，然后计算走完某一层为止的最小值。<br>    $dp[i][0]$ 代表第 $i$ 行从左往右走，原点到右端点的最小花费。<br>    $dp[i][1]$ 代表第 $i$ 行从右往左走，原点到左端点的最小花费。<br>由于垂直方向上已经计算过了，我们可以用离散化将所有空的行剔除，重新编号 $1 - t$。<br>在两层之间转移计算距离时，在 $b$ 上二分，找到最接近 $s$ 的位置，边上两个测试一下，保留最小值。</p>
+<p>水平方向：<br>    先考虑某一行，如果要遍历所有的点，最优办法一定是从一个端点走到另一个端点。再考虑多行的情况，由于只能从下往上走，可以从下往上递推。每次行与行之间转移时，从一个端点走到上一层的一个端点，然后计算走完某一层为止的最小值。<br>    $dp[i][0]$ 代表第 $i$ 行从左往右走，左端点到右端点的最小花费。<br>    $dp[i][1]$ 代表第 $i$ 行从右往左走，右端点到左端点的最小花费。<br>由于垂直方向上已经计算过了，我们可以用离散化将所有空的行剔除，重新编号 $1 - t$。<br>在两层之间转移计算距离时，在 $b$ 上二分，找到最接近 $s$ 的位置，边上两个测试一下，保留最小值。</p>
 <figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">2e5</span> + <span class="hljs-number">5</span>;</span><br><span class="line"> </span><br><span class="line"><span class="hljs-keyword">int</span> n, m, k, q;</span><br><span class="line"><span class="hljs-keyword">int</span> x[N], y[N], b[N];   <span class="hljs-comment">/*宝藏坐标以及安全的列*/</span></span><br><span class="line"><span class="hljs-keyword">int</span> t, sep[N];          <span class="hljs-comment">/*用于对 y 离散化的数组*/</span></span><br><span class="line"><span class="hljs-keyword">int</span> ld[N], rd[N];       <span class="hljs-comment">/*每一行的左端点和右端点*/</span></span><br><span class="line"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> dp[N][<span class="hljs-number">2</span>];     <span class="hljs-comment">/*0 left -&gt; right, 1 right -&gt; left*/</span></span><br><span class="line"> </span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">disc</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    sort(sep, sep + t);</span><br><span class="line">    t = unique(sep, sep + t) - sep;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++)</span><br><span class="line">        y[i] = lower_bound(sep, sep + t, y[i]) - sep + <span class="hljs-number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">dist</span><span class="hljs-params">(<span class="hljs-keyword">int</span> s, <span class="hljs-keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">auto</span> d = [&amp;](<span class="hljs-keyword">int</span> x)&#123;<span class="hljs-keyword">return</span> <span class="hljs-built_in">abs</span>(s - x) + <span class="hljs-built_in">abs</span>(t - x);&#125;;</span><br><span class="line">    <span class="hljs-keyword">int</span> p = lower_bound(b, b + q, min(s, t)) - b;</span><br><span class="line">    <span class="hljs-keyword">int</span> ret = <span class="hljs-number">0x3f3f3f3f</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span> (p != q)     ret = min(ret, d(b[p]));</span><br><span class="line">    <span class="hljs-keyword">if</span> (p - <span class="hljs-number">1</span> &gt;= <span class="hljs-number">0</span>) ret = min(ret, d(b[p - <span class="hljs-number">1</span>]));</span><br><span class="line">    <span class="hljs-keyword">if</span> (p + <span class="hljs-number">1</span> &lt; q)  ret = min(ret, d(b[p + <span class="hljs-number">1</span>]));</span><br><span class="line">    <span class="hljs-keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DP</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> preL = <span class="hljs-number">1</span>, preR = <span class="hljs-number">1</span>;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= t; i++) &#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> l = ld[i], r = rd[i], len = r - l;</span><br><span class="line">        <span class="hljs-keyword">if</span> (sep[<span class="hljs-number">0</span>] == <span class="hljs-number">1</span> &amp;&amp; i == <span class="hljs-number">1</span>) &#123;</span><br><span class="line">            dp[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] = r - <span class="hljs-number">1</span>;</span><br><span class="line">            dp[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] = r - <span class="hljs-number">1</span> + r - l;</span><br><span class="line">            preL = l, preR = r;</span><br><span class="line">            <span class="hljs-keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        dp[i][<span class="hljs-number">0</span>] = </span><br><span class="line">            len + min(dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>] + dist(preR, l), dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>] + dist(preL, l));</span><br><span class="line">        dp[i][<span class="hljs-number">1</span>] = </span><br><span class="line">            len + min(dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>] + dist(preR, r), dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>] + dist(preL, r));</span><br><span class="line">        preL = l, preR = r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">cin</span> &gt;&gt; n &gt;&gt; m &gt;&gt; k &gt;&gt; q;</span><br><span class="line">    <span class="hljs-keyword">int</span> mxy = <span class="hljs-number">1</span>;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">        <span class="hljs-built_in">cin</span> &gt;&gt; y[i] &gt;&gt; x[i];</span><br><span class="line">        mxy = max(mxy, y[i]);</span><br><span class="line">        sep[t++] = y[i];</span><br><span class="line">    &#125;</span><br><span class="line">    disc();</span><br><span class="line"> </span><br><span class="line">    <span class="hljs-built_in">memset</span>(ld, <span class="hljs-number">0x3f</span>, <span class="hljs-keyword">sizeof</span> ld);</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">        ld[y[i]] = min(ld[y[i]], x[i]);</span><br><span class="line">        rd[y[i]] = max(rd[y[i]], x[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; q; i++) <span class="hljs-built_in">cin</span> &gt;&gt; b[i];</span><br><span class="line">    sort(b, b + q);</span><br><span class="line"> </span><br><span class="line">    DP();</span><br><span class="line"> </span><br><span class="line">    <span class="hljs-built_in">cout</span> &lt;&lt; min(dp[t][<span class="hljs-number">0</span>], dp[t][<span class="hljs-number">1</span>]) + mxy - <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
@@ -220,6 +220,13 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/11/14/CF-EDU-76/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Educational Codeforces Round 76 partial solutions</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -278,7 +285,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        4
+                        5
                     </p>
                 </div>
             </div>
@@ -298,7 +305,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        13
+                        15
                     </p>
                 </div>
             </div>
@@ -350,20 +357,20 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/ACM/">
+        <a class="level is-marginless" href="/categories/算法/">
             <span class="level-start">
-                <span class="level-item">ACM</span>
+                <span class="level-item">算法</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
         </a><ul><li>
-        <a class="level is-marginless" href="/categories/ACM/比赛题解/">
+        <a class="level is-marginless" href="/categories/算法/比赛题解/">
             <span class="level-start">
                 <span class="level-item">比赛题解</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
         </a></li></ul></li>
             </ul>
@@ -422,6 +429,25 @@
         
         <article class="media">
             
+            <a href="/2019/11/14/CF-EDU-76/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/HK knight.jpg" alt="Educational Codeforces Round 76 partial solutions">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-13T18:51:13.000Z">2019-11-14</time></div>
+                    <a href="/2019/11/14/CF-EDU-76/" class="has-link-black-ter is-size-6">Educational Codeforces Round 76 partial solutions</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/08/05/CF-577/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/dango.jpg" alt="CodeForces #577 partial solutions">
@@ -433,7 +459,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T20:10:10.000Z">2019-08-05</time></div>
                     <a href="/2019/08/05/CF-577/" class="has-link-black-ter is-size-6">CodeForces #577 partial solutions</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a> / <a class="has-link-grey -link" href="/categories/ACM/比赛题解/">比赛题解</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
                     </p>
                 </div>
             </div>
@@ -452,7 +478,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-27T13:22:41.000Z">2019-02-27</time></div>
                     <a href="/2019/02/27/CF-539/" class="has-link-black-ter is-size-6">CodeForces #539 partial solutions</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a> / <a class="has-link-grey -link" href="/categories/ACM/比赛题解/">比赛题解</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
                     </p>
                 </div>
             </div>
@@ -471,7 +497,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-25T17:14:14.000Z">2019-02-26</time></div>
                     <a href="/2019/02/26/CF-538/" class="has-link-black-ter is-size-6">CodeForces #538</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a> / <a class="has-link-grey -link" href="/categories/ACM/比赛题解/">比赛题解</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
                     </p>
                 </div>
             </div>
@@ -490,7 +516,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-22T16:05:12.000Z">2019-02-23</time></div>
                     <a href="/2019/02/23/CF-CGR-1/" class="has-link-black-ter is-size-6">Codeforces Global Round #1 partial solutions</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a> / <a class="has-link-grey -link" href="/categories/ACM/比赛题解/">比赛题解</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
                     </p>
                 </div>
             </div>
@@ -507,6 +533,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/08/">
@@ -541,7 +578,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/CF-Rounds/" style="font-size: 20px;">CF Rounds</a> <a href="/tags/二分/" style="font-size: 10px;">二分</a> <a href="/tags/位运算/" style="font-size: 13.33px;">位运算</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 16.67px;">动态规划</a> <a href="/tags/字符串/" style="font-size: 10px;">字符串</a> <a href="/tags/差分/" style="font-size: 10px;">差分</a> <a href="/tags/数学/" style="font-size: 13.33px;">数学</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/暴力/" style="font-size: 10px;">暴力</a> <a href="/tags/线段树/" style="font-size: 13.33px;">线段树</a> <a href="/tags/贪心/" style="font-size: 16.67px;">贪心</a>
+        <a href="/tags/CF-Rounds/" style="font-size: 20px;">CF Rounds</a> <a href="/tags/ST表/" style="font-size: 10px;">ST表</a> <a href="/tags/二分/" style="font-size: 13.33px;">二分</a> <a href="/tags/位运算/" style="font-size: 16.67px;">位运算</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 20px;">动态规划</a> <a href="/tags/字符串/" style="font-size: 10px;">字符串</a> <a href="/tags/差分/" style="font-size: 10px;">差分</a> <a href="/tags/折半查找/" style="font-size: 10px;">折半查找</a> <a href="/tags/数学/" style="font-size: 13.33px;">数学</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/暴力/" style="font-size: 10px;">暴力</a> <a href="/tags/线段树/" style="font-size: 13.33px;">线段树</a> <a href="/tags/贪心/" style="font-size: 20px;">贪心</a>
     </div>
 </div>
 
@@ -566,6 +603,25 @@
         
         <article class="media">
             
+            <a href="/2019/11/14/CF-EDU-76/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/HK knight.jpg" alt="Educational Codeforces Round 76 partial solutions">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-13T18:51:13.000Z">2019-11-14</time></div>
+                    <a href="/2019/11/14/CF-EDU-76/" class="has-link-black-ter is-size-6">Educational Codeforces Round 76 partial solutions</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/08/05/CF-577/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/dango.jpg" alt="CodeForces #577 partial solutions">
@@ -577,7 +633,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T20:10:10.000Z">2019-08-05</time></div>
                     <a href="/2019/08/05/CF-577/" class="has-link-black-ter is-size-6">CodeForces #577 partial solutions</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a> / <a class="has-link-grey -link" href="/categories/ACM/比赛题解/">比赛题解</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
                     </p>
                 </div>
             </div>
@@ -596,7 +652,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-27T13:22:41.000Z">2019-02-27</time></div>
                     <a href="/2019/02/27/CF-539/" class="has-link-black-ter is-size-6">CodeForces #539 partial solutions</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a> / <a class="has-link-grey -link" href="/categories/ACM/比赛题解/">比赛题解</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
                     </p>
                 </div>
             </div>
@@ -615,7 +671,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-25T17:14:14.000Z">2019-02-26</time></div>
                     <a href="/2019/02/26/CF-538/" class="has-link-black-ter is-size-6">CodeForces #538</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a> / <a class="has-link-grey -link" href="/categories/ACM/比赛题解/">比赛题解</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
                     </p>
                 </div>
             </div>
@@ -634,7 +690,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-22T16:05:12.000Z">2019-02-23</time></div>
                     <a href="/2019/02/23/CF-CGR-1/" class="has-link-black-ter is-size-6">Codeforces Global Round #1 partial solutions</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a> / <a class="has-link-grey -link" href="/categories/ACM/比赛题解/">比赛题解</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
                     </p>
                 </div>
             </div>
@@ -651,6 +707,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/08/">
@@ -685,7 +752,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/CF-Rounds/" style="font-size: 20px;">CF Rounds</a> <a href="/tags/二分/" style="font-size: 10px;">二分</a> <a href="/tags/位运算/" style="font-size: 13.33px;">位运算</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 16.67px;">动态规划</a> <a href="/tags/字符串/" style="font-size: 10px;">字符串</a> <a href="/tags/差分/" style="font-size: 10px;">差分</a> <a href="/tags/数学/" style="font-size: 13.33px;">数学</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/暴力/" style="font-size: 10px;">暴力</a> <a href="/tags/线段树/" style="font-size: 13.33px;">线段树</a> <a href="/tags/贪心/" style="font-size: 16.67px;">贪心</a>
+        <a href="/tags/CF-Rounds/" style="font-size: 20px;">CF Rounds</a> <a href="/tags/ST表/" style="font-size: 10px;">ST表</a> <a href="/tags/二分/" style="font-size: 13.33px;">二分</a> <a href="/tags/位运算/" style="font-size: 16.67px;">位运算</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 20px;">动态规划</a> <a href="/tags/字符串/" style="font-size: 10px;">字符串</a> <a href="/tags/差分/" style="font-size: 10px;">差分</a> <a href="/tags/折半查找/" style="font-size: 10px;">折半查找</a> <a href="/tags/数学/" style="font-size: 13.33px;">数学</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/暴力/" style="font-size: 10px;">暴力</a> <a href="/tags/线段树/" style="font-size: 13.33px;">线段树</a> <a href="/tags/贪心/" style="font-size: 20px;">贪心</a>
     </div>
 </div>
 

@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>Educational Codeforces Round 76 partial solutions - XOR-star</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="经过几个月的艰苦奋斗（自己挖坑FST * n，T^T），CF大号终于也要黄名啦！写篇题解纪念下~也终于实现了在区域赛前上黄的愿望，欣慰~ A. Two Rival Students 题意：有 $n$ 个学生站成一排，问 $x$ 次操作后，原本在 $a$ 和 $b$ 位置的学生最远的距离。每次操作为选择 $2$ 个相邻站位的学生交换位置。">
+<meta name="keywords" content="贪心,位运算,二分,动态规划,ST表,折半查找">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Educational Codeforces Round 76 partial solutions">
+<meta property="og:url" content="http://yoursite.com/2019/11/14/CF-EDU-76/index.html">
+<meta property="og:site_name" content="XOR-star">
+<meta property="og:description" content="经过几个月的艰苦奋斗（自己挖坑FST * n，T^T），CF大号终于也要黄名啦！写篇题解纪念下~也终于实现了在区域赛前上黄的愿望，欣慰~ A. Two Rival Students 题意：有 $n$ 个学生站成一排，问 $x$ 次操作后，原本在 $a$ 和 $b$ 位置的学生最远的距离。每次操作为选择 $2$ 个相邻站位的学生交换位置。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-13T22:49:58.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Educational Codeforces Round 76 partial solutions">
+<meta name="twitter:description" content="经过几个月的艰苦奋斗（自己挖坑FST * n，T^T），CF大号终于也要黄名啦！写篇题解纪念下~也终于实现了在区域赛前上黄的愿望，欣慰~ A. Two Rival Students 题意：有 $n$ 个学生站成一排，问 $x$ 次操作后，原本在 $a$ 和 $b$ 位置的学生最远的距离。每次操作为选择 $2$ 个相邻站位的学生交换位置。">
+
+
+
+
+
+<link rel="icon" href="/images/f.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/f.png" alt="Educational Codeforces Round 76 partial solutions" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/images/HK knight.jpg" alt="Educational Codeforces Round 76 partial solutions">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-13T18:51:13.000Z">2019-11-14</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/算法/">算法</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    15 分钟 读完 (大约 2189 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Educational Codeforces Round 76 partial solutions
+            
+        </h1>
+        <div class="content">
+            <p>经过几个月的艰苦奋斗（自己挖坑FST * n，T^T），CF大号终于也要黄名啦！<br>写篇题解纪念下~<br>也终于实现了在区域赛前上黄的愿望，欣慰~</p>
+<h1 id="A-Two-Rival-Students"><a href="#A-Two-Rival-Students" class="headerlink" title="A. Two Rival Students"></a><a href="https://codeforces.com/problemset/problem/1257/A" target="_blank" rel="noopener">A. Two Rival Students</a></h1><blockquote>
+<p>题意：有 $n$ 个学生站成一排，问 $x$ 次操作后，原本在 $a$ 和 $b$ 位置的学生最远的距离。每次操作为选择 $2$ 个相邻站位的学生交换位置。</p>
+</blockquote>
+<a id="more"></a>
+<p>一种解法是答案为 $min(n - 1, abs(a - b) + x)$，不言而喻，每一步将某个人向着相互远离地交换，最大可能距离为 $n - 1$。</p>
+<p>另一种是直接照着模拟啦，比赛的时候没多想，看数据小写模拟了。其实可以 $1min $ AC的。</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span> cas <span class="hljs-keyword">in</span> range(int(input())):</span><br><span class="line">    n, x, a, b = map(int, input().split())</span><br><span class="line">    print(min(n - <span class="hljs-number">1</span>, abs(a - b) + x))</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="B-Magic-Stick"><a href="#B-Magic-Stick" class="headerlink" title="B. Magic Stick"></a><a href="https://codeforces.com/problemset/problem/1257/B" target="_blank" rel="noopener">B. Magic Stick</a></h1><blockquote>
+<p>题意：$petya$ 可以对一个正整数施放 $2$ 种咒语</p>
+<ol>
+<li>如果数 $a$ 是偶数，使 $a$ 转变成 $3a / 2$。</li>
+<li>如果数 $a$ 大于 $1$，使 $a$ 转变成 $a - 1$。</li>
+</ol>
+<p>问正整数 $x$ 是否可以转变成 $y$。</p>
+</blockquote>
+<p>首先考虑 $x$ 分解质因数后 $2$ 的指数越高，只用第一种咒语可以将这个数变得越大。再考虑第二种操作，只要 $x$ 足够大，就能通过减法操作达到 $y$，一个奇数也可通过操作 $2$，变成偶数，并满足操作 $1$ 的条件。</p>
+<p>简单的推一推，可以得到 $x&gt;=4$ 时，所有正整数皆可到达。</p>
+<p>$x&lt;4$ 的情况下，若 $x==1$，只可达 $1$；其它情况最高可达 $3$。</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span> cas <span class="hljs-keyword">in</span> range(int(input())):</span><br><span class="line">    x, y = map(int, input().split())</span><br><span class="line">    <span class="hljs-keyword">if</span> x == y <span class="hljs-keyword">or</span> x &gt;= <span class="hljs-number">4</span>:</span><br><span class="line">        print(<span class="hljs-string">'YES'</span>)</span><br><span class="line">    <span class="hljs-keyword">elif</span> x &gt; <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> y &lt; <span class="hljs-number">4</span>:</span><br><span class="line">        print(<span class="hljs-string">'YES'</span>)</span><br><span class="line">    <span class="hljs-keyword">else</span>:</span><br><span class="line">        print(<span class="hljs-string">'NO'</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="C-Dominated-Subarray"><a href="#C-Dominated-Subarray" class="headerlink" title="C. Dominated Subarray"></a><a href="https://codeforces.com/problemset/problem/1257/C" target="_blank" rel="noopener">C. Dominated Subarray</a></h1><blockquote>
+<p>题意：如果一个数组至少有 $2$ 个元素，并且某种元素的出现次数大于所有其它任一种元素的出现次数，那么可以认为这个数组是被支配的。求给定数组的最小被支配子段。</p>
+</blockquote>
+<p>易知，当某个子段只有一种元素时，一定是合法的，所以最小的情况是 $2$。</p>
+<p>当子段中元素种类数大于 $1$ 时，最小的子段的支配元素一定分布在子段的两端。如果两端不是支配元素，那么这个子段一定可以缩小范围。可以贪心地想到最小的情况是支配元素的个数为 $2$，其余皆为 $1$，如果在中间有两个相同的元素的话，证明范围内还有更优解。</p>
+<p>实现思路只需取最近 $2$ 个相同元素作为子段左右界即可。</p>
+<p>每次记录每种元素最后出现的位置 $last$，扫描一遍数组即可，复杂度 $O(n)$。</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span> cas <span class="hljs-keyword">in</span> range(int(input())):</span><br><span class="line">    n = int(input())</span><br><span class="line">    a = list(map(int, input().split()))</span><br><span class="line">    last = [<span class="hljs-number">-1</span>] * (n + <span class="hljs-number">1</span>)</span><br><span class="line">    ans = n + <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n):</span><br><span class="line">        x = a[i]</span><br><span class="line">        <span class="hljs-keyword">if</span> last[x] != <span class="hljs-number">-1</span>:</span><br><span class="line">            ans = min(ans, i - last[x] + <span class="hljs-number">1</span>)</span><br><span class="line">        last[x] = i</span><br><span class="line"></span><br><span class="line">    print((ans, <span class="hljs-number">-1</span>)[ans == n + <span class="hljs-number">1</span>])</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="D-Yet-Another-Monster-Killing-Problem"><a href="#D-Yet-Another-Monster-Killing-Problem" class="headerlink" title="D. Yet Another Monster Killing Problem"></a><a href="https://codeforces.com/problemset/problem/1257/D" target="_blank" rel="noopener">D. Yet Another Monster Killing Problem</a></h1><blockquote>
+<p>题意：有 $n$ 只怪物，他们的攻击力分别为 $a_i$。你有 $m$ 个英雄，每个英雄的攻击力为 $p_i$，体力值为 $s_i$。每天你可以命令一个英雄去地下城，按照顺序打怪，已经被击败的怪物不会复活。英雄可以击败攻击力小于等于他的怪物，每击败一个，会消耗 $1$ 点体力值。当英雄遇到一个攻击比他高的怪物，或者体力降为 $0$ 时，他会退出地下城，当天结束，消耗的体力值也会获得补充。求最少几天能够击败所有怪物。</p>
+</blockquote>
+<p>考虑动态规划，贪心我不知道怎么保证正确性…</p>
+<p>预处理出 $power$ 数组，$power_i$ 代表能够一天内击败 $i$ 只怪物的英雄的攻击最大值。</p>
+<p>$dp(i)$ 代表前 $i$ 只怪物最少需要几天击败，当计算第 $i$ 只怪物时，前 $i-1$ 个值已计算完成，且不会对之前的造成影响。考虑本只怪物作为当天最后一只怪物，这一天最多可以击败多少怪物，若这天可以击败 $m$ 只怪物，则 $dp(i) = dp(i - m) + 1$。由于 $dp$ 的含义易知，$dp$ 数组是单调递增的，所以可以求到的值即是最小的。</p>
+<p>每次往前找最大当天怪物数时，需要区间极值查询（ST表）和二分查找。</p>
+<p>时间消耗主要是ST表预处理 $O(nlogn)$，以及二分查找 $O(nlogn)$，所以总时间复杂度为 $O(nlogn)$。</p>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">2e5</span> + <span class="hljs-number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">template</span>&lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span>, <span class="hljs-title">int</span> <span class="hljs-title">MAX</span>&gt; <span class="hljs-title">struct</span> <span class="hljs-title">ST</span> &#123;</span></span><br><span class="line">    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;T&gt;&gt; mx;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">template</span>&lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span>&gt; <span class="hljs-title">void</span> <span class="hljs-title">modify</span>(<span class="hljs-title">A</span>&amp; <span class="hljs-title">a</span>, <span class="hljs-title">int</span> <span class="hljs-title">l</span>, <span class="hljs-title">int</span> <span class="hljs-title">r</span>) &#123;</span></span><br><span class="line">        mx.resize(r + <span class="hljs-number">1</span>);</span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">len</span><span class="hljs-params">(log2(r - l + <span class="hljs-number">1</span>) + <span class="hljs-number">2</span>)</span></span>;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = l; i &lt;= r; i++)</span><br><span class="line">            mx[i].resize(len), mx[i][<span class="hljs-number">0</span>] = a[i] * MAX;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; l + (<span class="hljs-number">1</span> &lt;&lt; i) - <span class="hljs-number">1</span> &lt;= r; i++)</span><br><span class="line">            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = l; j + (<span class="hljs-number">1</span> &lt;&lt; i) - <span class="hljs-number">1</span> &lt;= r; j++)</span><br><span class="line">                mx[j][i] = max(mx[j][i - <span class="hljs-number">1</span>], mx[j + (<span class="hljs-number">1</span> &lt;&lt; (i - <span class="hljs-number">1</span>))][i - <span class="hljs-number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-function">T <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> k = log2(r - l + <span class="hljs-number">1</span>);</span><br><span class="line">        <span class="hljs-keyword">return</span> max(mx[l][k], mx[r - (<span class="hljs-number">1</span> &lt;&lt; k) + <span class="hljs-number">1</span>][k]) * MAX;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n, m;</span><br><span class="line"><span class="hljs-keyword">int</span> a[N], power[N], dp[N];</span><br><span class="line">ST&lt;<span class="hljs-keyword">int</span>, <span class="hljs-number">1</span>&gt; table;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="hljs-built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">    table.modify(a, <span class="hljs-number">1</span>, n);</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)</span><br><span class="line">        power[i] = <span class="hljs-number">0</span>, dp[i] = <span class="hljs-number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-built_in">cin</span> &gt;&gt; m;</span><br><span class="line">    <span class="hljs-keyword">int</span> max_p = <span class="hljs-number">0</span>, p, s;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">        <span class="hljs-built_in">cin</span> &gt;&gt; p &gt;&gt; s;</span><br><span class="line">        power[s] = max(power[s], p);</span><br><span class="line">        max_p = max(max_p, p);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = n - <span class="hljs-number">1</span>; i; i--)</span><br><span class="line">        power[i] = max(power[i], power[i + <span class="hljs-number">1</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> (max_p &lt; table.query(<span class="hljs-number">1</span>, n)) &#123;<span class="hljs-built_in">puts</span>(<span class="hljs-string">"-1"</span>); <span class="hljs-keyword">return</span>;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> l = <span class="hljs-number">1</span>, r = n + <span class="hljs-number">1</span>, m;</span><br><span class="line">        <span class="hljs-keyword">while</span> (m = (l + r) &gt;&gt; <span class="hljs-number">1</span>, l + <span class="hljs-number">1</span> &lt; r)</span><br><span class="line">            <span class="hljs-keyword">if</span> (table.query(max(<span class="hljs-number">1</span>, i - m + <span class="hljs-number">1</span>), i) &lt;= power[m])</span><br><span class="line">                l = m;</span><br><span class="line">            <span class="hljs-keyword">else</span></span><br><span class="line">                r = m;</span><br><span class="line">        dp[i] = dp[max(<span class="hljs-number">0</span>, i - l)] + <span class="hljs-number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">cout</span> &lt;&lt; dp[n] &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> T; <span class="hljs-built_in">cin</span> &gt;&gt; T;</span><br><span class="line">    <span class="hljs-keyword">while</span> (T--) solve();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="E-The-Contest"><a href="#E-The-Contest" class="headerlink" title="E. The Contest"></a><a href="https://codeforces.com/problemset/problem/1257/E" target="_blank" rel="noopener">E. The Contest</a></h1><blockquote>
+<p>题意：一次 $3$ 个人在打比赛，一共有 $n$ 题。三个人分别从前、中、后开题，但是他们发现有的人题目拿错了。每一步中，一个人可以将自己的题目交给另一个人。问最少几步，可以满足三人分别拿到 $[1..n]$ 排列的前中后缀的题目。允许最终有人的题目数为 $0$。</p>
+</blockquote>
+<p>线性DP，复杂度 $O(n)$。</p>
+<p>将所有题目的归属分为 $(1, 2, 3)$，题目即花费最小代价，改变每个题目的归属，满足要求。</p>
+<p>$f[0][i]$ 代表只用 $[1]$ 作为前 $i$ 个元素的最小代价。</p>
+<p>$f[1][i]$ 代表用 $[1, 2]$ 作为前 $i$ 个元素的最小代价，如果第 $i$ 个元素是 $1$ 的话，$f[1][i]$ 就等于 $f[0][i]$，如果第 $i$ 个元素是 $2$ 的话，$f[1][i]$ 就等于 $f[1][i -1]$ 加上新增的代价。</p>
+<p>$f[2]$ 数组可以在 $f[1]$ 和 $f[2]$ 的基础上递推得到。</p>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">2e5</span> + <span class="hljs-number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n, x, y, z;</span><br><span class="line"><span class="hljs-keyword">int</span> a[N], f[<span class="hljs-number">3</span>][N];</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">auto</span> rd = []()&#123;<span class="hljs-keyword">int</span> x; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;x); <span class="hljs-keyword">return</span> x;&#125;;</span><br><span class="line">    x = rd(), y = rd(), z = rd();</span><br><span class="line">    n = x + y + z;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= x; i++) a[rd()] = <span class="hljs-number">1</span>;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= y; i++) a[rd()] = <span class="hljs-number">2</span>;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= z; i++) a[rd()] = <span class="hljs-number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-built_in">memset</span>(f, <span class="hljs-number">0x3f</span>, <span class="hljs-keyword">sizeof</span> f);</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) f[i][<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        f[<span class="hljs-number">0</span>][i] = f[<span class="hljs-number">0</span>][i - <span class="hljs-number">1</span>] + (a[i] != <span class="hljs-number">1</span>);</span><br><span class="line">        f[<span class="hljs-number">1</span>][i] = min(f[<span class="hljs-number">0</span>][i], f[<span class="hljs-number">1</span>][i - <span class="hljs-number">1</span>] + (a[i] != <span class="hljs-number">2</span>));</span><br><span class="line">        f[<span class="hljs-number">2</span>][i] = min(f[<span class="hljs-number">1</span>][i], f[<span class="hljs-number">2</span>][i - <span class="hljs-number">1</span>] + (a[i] != <span class="hljs-number">3</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>, f[<span class="hljs-number">2</span>][n]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="F-Make-Them-Similar"><a href="#F-Make-Them-Similar" class="headerlink" title="F. Make Them Similar"></a><a href="https://codeforces.com/problemset/problem/1257/F" target="_blank" rel="noopener">F. Make Them Similar</a></h1><blockquote>
+<p>题意：给出一个数组 $a$，输出一个数 $x$，使得所有 $count(x \oplus a_i)$ 相等，其中 $count$ 代表一个整数二进制表达中 $1$ 的个数。$(0 &lt;= a_i &lt; 2^{30})$。</p>
+</blockquote>
+<p>比赛的时候没有做出来，对于折半查找还不是很熟… 这里解法和代码参考了一下 $dreamoon$ 的 $solution$。</p>
+<p>折半查找主要是将问题分为两部分，并且一部分可以用哈希/二分等方法在另一部分中快速的查找来实现算法，通常和状态压缩一起出，感觉上挺暴力的。</p>
+<p>本题中由于值最大为 $2$ 的 $30$ 次，将 $30$ 一分为 $2$，每部分用 $O(15*2^{15}n)$ 的时间枚举 $x$，并计算出每个位置与 $x \oplus a_1$ 中 $1$ 的个数的差量。然后在 $vector$ 中查找对应答案是否存在。</p>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> _1s  __builtin_popcountll</span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">105</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MASK = (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">15</span>) - <span class="hljs-number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span> n;</span><br><span class="line"><span class="hljs-keyword">int</span> a[N], b[N];</span><br><span class="line"><span class="hljs-built_in">vector</span>&lt;pair&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;, <span class="hljs-keyword">int</span>&gt;&gt; vec;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>, x; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;x);</span><br><span class="line">        a[i] = x &amp; MASK;</span><br><span class="line">        b[i] = x &gt;&gt; <span class="hljs-number">15</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= MASK; i++) &#123;</span><br><span class="line">        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; now;</span><br><span class="line">        <span class="hljs-keyword">int</span> base = _1s(i ^ a[<span class="hljs-number">1</span>]);</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            now.push_back(_1s(i ^ a[j]) - base);</span><br><span class="line">        &#125;</span><br><span class="line">        vec.push_back(&#123;now, i&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    sort(vec.begin(), vec.end());</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= MASK; i++) &#123;</span><br><span class="line">        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; now;</span><br><span class="line">        <span class="hljs-keyword">int</span> base = _1s(i ^ b[<span class="hljs-number">1</span>]);</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            now.push_back(base - _1s(i ^ b[j]));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">auto</span> it =</span><br><span class="line">            lower_bound(vec.begin(), vec.end(), make_pair(now, <span class="hljs-number">0</span>));</span><br><span class="line">        <span class="hljs-keyword">if</span> (it == vec.end()) <span class="hljs-keyword">continue</span>;</span><br><span class="line">        <span class="hljs-keyword">if</span> ((*it).first == now) &#123;</span><br><span class="line">            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>, (*it).second | (i &lt;&lt; <span class="hljs-number">15</span>));</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">puts</span>(<span class="hljs-string">"-1"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/ST表/">ST表</a>, <a class="has-link-grey -link" href="/tags/二分/">二分</a>, <a class="has-link-grey -link" href="/tags/位运算/">位运算</a>, <a class="has-link-grey -link" href="/tags/动态规划/">动态规划</a>, <a class="has-link-grey -link" href="/tags/折半查找/">折半查找</a>, <a class="has-link-grey -link" href="/tags/贪心/">贪心</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/05/CF-577/">
+                <span class="level-item">CodeForces #577 partial solutions</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <figure class="image container is-128x128 has-mb-6">
+                            <img class="is-rounded" src="/images/avatar.jpg" alt="k_arthur4">
+                        </figure>
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        k_arthur4
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        the Lord of XOR star
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Ningbo Zhejiang</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        2
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        15
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/XOR-star">
+                关注我</a>
+        </div>
+        
+        
+    </div>
+</div>
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#A-Two-Rival-Students">
+        <span class="has-mr-6">1</span>
+        <span>A. Two Rival Students</span>
+        </a></li><li>
+        <a class="is-flex" href="#B-Magic-Stick">
+        <span class="has-mr-6">2</span>
+        <span>B. Magic Stick</span>
+        </a></li><li>
+        <a class="is-flex" href="#C-Dominated-Subarray">
+        <span class="has-mr-6">3</span>
+        <span>C. Dominated Subarray</span>
+        </a></li><li>
+        <a class="is-flex" href="#D-Yet-Another-Monster-Killing-Problem">
+        <span class="has-mr-6">4</span>
+        <span>D. Yet Another Monster Killing Problem</span>
+        </a></li><li>
+        <a class="is-flex" href="#E-The-Contest">
+        <span class="has-mr-6">5</span>
+        <span>E. The Contest</span>
+        </a></li><li>
+        <a class="is-flex" href="#F-Make-Them-Similar">
+        <span class="has-mr-6">6</span>
+        <span>F. Make Them Similar</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/算法/">
+            <span class="level-start">
+                <span class="level-item">算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/算法/比赛题解/">
+            <span class="level-start">
+                <span class="level-item">比赛题解</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://nbutacm.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">nbutacm</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">nbutacm.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://llfzllfz.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">llfz</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">llfzllfz.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/11/14/CF-EDU-76/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/HK knight.jpg" alt="Educational Codeforces Round 76 partial solutions">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-13T18:51:13.000Z">2019-11-14</time></div>
+                    <a href="/2019/11/14/CF-EDU-76/" class="has-link-black-ter is-size-6">Educational Codeforces Round 76 partial solutions</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/05/CF-577/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/dango.jpg" alt="CodeForces #577 partial solutions">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T20:10:10.000Z">2019-08-05</time></div>
+                    <a href="/2019/08/05/CF-577/" class="has-link-black-ter is-size-6">CodeForces #577 partial solutions</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/27/CF-539/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/HK holloween.jpg" alt="CodeForces #539 partial solutions">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-27T13:22:41.000Z">2019-02-27</time></div>
+                    <a href="/2019/02/27/CF-539/" class="has-link-black-ter is-size-6">CodeForces #539 partial solutions</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/26/CF-538/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/EF island.jpg" alt="CodeForces #538">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-25T17:14:14.000Z">2019-02-26</time></div>
+                    <a href="/2019/02/26/CF-538/" class="has-link-black-ter is-size-6">CodeForces #538</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/23/CF-CGR-1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/EF house.jpg" alt="Codeforces Global Round #1 partial solutions">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-22T16:05:12.000Z">2019-02-23</time></div>
+                    <a href="/2019/02/23/CF-CGR-1/" class="has-link-black-ter is-size-6">Codeforces Global Round #1 partial solutions</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/CF-Rounds/" style="font-size: 20px;">CF Rounds</a> <a href="/tags/ST表/" style="font-size: 10px;">ST表</a> <a href="/tags/二分/" style="font-size: 13.33px;">二分</a> <a href="/tags/位运算/" style="font-size: 16.67px;">位运算</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 20px;">动态规划</a> <a href="/tags/字符串/" style="font-size: 10px;">字符串</a> <a href="/tags/差分/" style="font-size: 10px;">差分</a> <a href="/tags/折半查找/" style="font-size: 10px;">折半查找</a> <a href="/tags/数学/" style="font-size: 13.33px;">数学</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/暴力/" style="font-size: 10px;">暴力</a> <a href="/tags/线段树/" style="font-size: 13.33px;">线段树</a> <a href="/tags/贪心/" style="font-size: 20px;">贪心</a>
+    </div>
+</div>
+
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/11/14/CF-EDU-76/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/HK knight.jpg" alt="Educational Codeforces Round 76 partial solutions">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-13T18:51:13.000Z">2019-11-14</time></div>
+                    <a href="/2019/11/14/CF-EDU-76/" class="has-link-black-ter is-size-6">Educational Codeforces Round 76 partial solutions</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/05/CF-577/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/dango.jpg" alt="CodeForces #577 partial solutions">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T20:10:10.000Z">2019-08-05</time></div>
+                    <a href="/2019/08/05/CF-577/" class="has-link-black-ter is-size-6">CodeForces #577 partial solutions</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/27/CF-539/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/HK holloween.jpg" alt="CodeForces #539 partial solutions">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-27T13:22:41.000Z">2019-02-27</time></div>
+                    <a href="/2019/02/27/CF-539/" class="has-link-black-ter is-size-6">CodeForces #539 partial solutions</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/26/CF-538/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/EF island.jpg" alt="CodeForces #538">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-25T17:14:14.000Z">2019-02-26</time></div>
+                    <a href="/2019/02/26/CF-538/" class="has-link-black-ter is-size-6">CodeForces #538</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/23/CF-CGR-1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/EF house.jpg" alt="Codeforces Global Round #1 partial solutions">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-22T16:05:12.000Z">2019-02-23</time></div>
+                    <a href="/2019/02/23/CF-CGR-1/" class="has-link-black-ter is-size-6">Codeforces Global Round #1 partial solutions</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/比赛题解/">比赛题解</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/CF-Rounds/" style="font-size: 20px;">CF Rounds</a> <a href="/tags/ST表/" style="font-size: 10px;">ST表</a> <a href="/tags/二分/" style="font-size: 13.33px;">二分</a> <a href="/tags/位运算/" style="font-size: 16.67px;">位运算</a> <a href="/tags/前缀和/" style="font-size: 10px;">前缀和</a> <a href="/tags/动态规划/" style="font-size: 20px;">动态规划</a> <a href="/tags/字符串/" style="font-size: 10px;">字符串</a> <a href="/tags/差分/" style="font-size: 10px;">差分</a> <a href="/tags/折半查找/" style="font-size: 10px;">折半查找</a> <a href="/tags/数学/" style="font-size: 13.33px;">数学</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/数论/" style="font-size: 10px;">数论</a> <a href="/tags/暴力/" style="font-size: 10px;">暴力</a> <a href="/tags/线段树/" style="font-size: 13.33px;">线段树</a> <a href="/tags/贪心/" style="font-size: 20px;">贪心</a>
+    </div>
+</div>
+
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/f.png" alt="Educational Codeforces Round 76 partial solutions" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 k_arthur4&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download the icarus theme on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
